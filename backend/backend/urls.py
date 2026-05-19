@@ -17,4 +17,6 @@ urlpatterns = [
     ),
     # Includes all necessary additional pre-built DRF views for handling user auth
     path("api-auth/", include("rest_framework.urls")),
+    # URL forwarding syntax
+    path("api/", include("api.urls")),
 ]

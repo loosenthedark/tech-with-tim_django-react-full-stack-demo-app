@@ -3,7 +3,8 @@ from django.contrib.auth.models import User
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
-from .serializers import UserSerializer
+from .models import Note
+from .serializers import UserSerializer, NoteSerializer
 
 
 # Make a class-based view (i.e. registration form) that enables us to create new users
@@ -15,3 +16,30 @@ class CreateUserView(generics.CreateAPIView):
     serializer_class = UserSerializer
     # Specifies who can actually call this view (i.e. no auth required here)
     permission_classes = [AllowAny]
+
+
+class ListCreateNoteView(generics.ListCreateAPIView):
+    serializer_class = NoteSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        # Simple means provided by Django of accessing the currently-authenticated user (who is interacting with this route)
+        user = self.request.user
+        # Ensures each user can only CRUD their own notes
+        return Note.objects.filter(author=user)
+
+    def perform_create(self, serializer):
+        if serializer.is_valid():
+            # Need to manually designate a val here for read-only author field
+            serializer.save(author=self.request.user)
+        else:
+            print(serializer.errors)
+
+
+class DeleteNoteView(generics.DestroyAPIView):
+    serializer_class = NoteSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        return Note.objects.filter(author=user)
