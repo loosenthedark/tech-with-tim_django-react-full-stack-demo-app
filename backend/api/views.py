@@ -7,7 +7,7 @@ from .serializers import UserSerializer
 
 
 # Make a class-based view (i.e. registration form) that enables us to create new users
-class CreateUser(generics.CreateAPIView):
+class CreateUserView(generics.CreateAPIView):
     # Specifies all of the different objects we're gonna be looking at when creating a new one
     # Among other things, this ensures we don't/can't create a user that already exists in the DB
     queryset = User.objects.all()
