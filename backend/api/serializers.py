@@ -9,7 +9,7 @@ class UserSerializer(serializers.ModelSerializer):
         # All the fields we want to serialise when accepting AND returning a new user
         fields = ["id", "username", "password"]
         # Tells Django not to return user PWs with rest of new user data (i.e. PWs will only be accepted - not returned)
-        extra_kwargs = {"password": {"write-only": True}}
+        extra_kwargs = {"password": {"write_only": True}}
 
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
