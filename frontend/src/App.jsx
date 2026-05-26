@@ -38,6 +38,10 @@ const browserRouter = createBrowserRouter([
     path: "/register",
     element: <LogoutThenRegister />,
   },
+  {
+    path: "/logout",
+    element: <Logout />,
+  },
   // Fallback route
   {
     path: "*",

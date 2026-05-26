@@ -1,4 +1,6 @@
+import FormComponent from "../components/Form";
+
 const Register = () => {
-  return <div>Register page</div>;
+  return <FormComponent action="register" route="/api/user/register/" />;
 };
 export default Register;

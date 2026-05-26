@@ -1,4 +1,6 @@
+import FormComponent from "../components/Form";
+
 const Login = () => {
-  return <div>Login page</div>;
+  return <FormComponent action="login" route="/api/token/" />;
 };
 export default Login;
