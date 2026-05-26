@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import api from "../api";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
+import LoadingIndicatorComponent from "./LoadingIndicator";
 // Custom stylesheet
 import "../styles/Form.css";
 
@@ -55,6 +56,8 @@ const Form = ({ route, action }) => {
         className="form-input"
         placeholder="Password"
       />
+      {/* Conditional rendering while form is being submitted */}
+      {isLoading && <LoadingIndicatorComponent />}
       <button className="form-button" type="submit">
         {formTitle}
       </button>
