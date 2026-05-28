@@ -8,3 +8,5 @@ pytz
 sqlparse
 psycopg2-binary # adapter for working with a PostgreSQL DB
 python-dotenv # for injecting env vars
+gunicorn # Python HTTP server used to serve Django apps in prod env'ts (inside a Docker container)
+mysqlclient # Python adapter for MySQL
